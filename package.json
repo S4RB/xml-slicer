@@ -1,0 +1,23 @@
+{
+  "name": "xml-slicer",
+  "version": "1.0.0",
+  "description": "slice XML stream using XPath expression",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vavere/xml-slicer.git"
+  },
+  "author": "Lauris Vāvere",
+  "license": "ISC",
+  "dependencies": {
+    "sax": "^1.1.4",
+    "saxpath": "^0.6.3"
+  },
+  "devDependencies": {
+    "xml2js": "^0.4.16"
+  }
+}
