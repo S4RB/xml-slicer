@@ -3,6 +3,24 @@ var util = require('util');
 var stream = require('stream');
 var sax = require('sax');
 var saxpath = require('saxpath');
+var util = require('util');
+var XmlRecorder = require('./node_modules/saxpath/lib/xml_recorder');
+
+var CustomRecorder = function () {
+  XmlRecorder.call(this);
+};
+util.inherits(CustomRecorder, XmlRecorder);
+
+CustomRecorder.prototype.onText = function(text) {
+  text = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;') // "
+    .replace(/'/g, '&apos;'); // '
+
+  CustomRecorder.super_.prototype.onText.bind(this)(text);
+};
 
 function XmlSlicer(opts) {
   if (!(this instanceof XmlSlicer)) return new XmlSlicer(opts);
@@ -21,7 +39,7 @@ function XmlSlicer(opts) {
   this._parsing = 0;
   this._sax = sax.createStream(true);
 
-  var streamer = new saxpath.SaXPath(this._sax, xpath);
+  var streamer = new saxpath.SaXPath(this._sax, xpath, new CustomRecorder());
   streamer.on('match', function(fragment) {
 
     if (self._parsing < concurrency) return parsing(fragment);
