@@ -4,7 +4,7 @@ var stream = require('stream');
 var sax = require('sax');
 var saxpath = require('saxpath');
 var util = require('util');
-var XmlRecorder = require('./node_modules/saxpath/lib/xml_recorder');
+var XmlRecorder = require('../../saxpath/lib/xml_recorder');
 
 var CustomRecorder = function () {
   XmlRecorder.call(this);
