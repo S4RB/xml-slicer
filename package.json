@@ -1,6 +1,6 @@
 {
   "name": "@s4rb/xml-slicer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "slice XML stream using XPath expression",
   "main": "index.js",
   "scripts": {
